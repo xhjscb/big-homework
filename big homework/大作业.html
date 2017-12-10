@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>toutiao</title>
+	<link rel="stylesheet" type="text/css" href="css/fengcheche.css">
+	<script type="text/javascript">
+
+		window.onload = function(){
+			var container = document.getElementById("container");
+			var list = document.getElementById("list");
+			var prev = document.getElementById("prev");
+			var next = document.getElementById('next');
+			 /*-------------元素获取------------------*/
+			 var animated = false;
+			 /*-------------元素声明------------------*/
+			 function animate(offerset){
+			 	var newLeft = parseInt(list.style.left) + offerset;
+			 	var time = 300;
+			 	var interval = 10;
+			 	var speed = offerset/(time/interval);
+
+			 	animated = true;
+			 	function go(){
+			 		if ( (speed<0&&parseInt(list.style.left)>newLeft)||
+			 			(speed>0&&parseInt(list.style.left)<newLeft) ) {
+			 			list.style.left = parseInt(list.style.left) + speed +'px';
+			 			setTimeout(go, interval);
+			 		}
+			 	
+			 		else{
+			 			animated = false;
+			 			list.style.left = newLeft + 'px';
+			 			if (newLeft > -600) {
+			 			list.style.left = -3000 +'px';
+			 			}
+			 			if (newLeft < -3000) {
+			 			list.style.left = -600 +'px';
+			 			}
+			 		}
+			 	}
+			 	go();
+			 }
+			 prev.onclick = function(){
+			 	if(!animated){animate(-600);}
+			 }
+			 next.onclick = function(){
+			 	if(!animated){animate(600);}
+			 }
+		}
+	</script>
+	<!---以上轮播部分-->
+</head>
+<body>
+	<div id="head">
+		<div class="logo">
+			<span class="span">LOGO</span>
+		</div>
+		<div class="topbar">
+			<ul class="log">
+				<li class="h"><a href="#">登录</a></li>
+				<li class="h"><a href="#">注册</a></li>
+				<li class="h"><a href="#">我的</a></li>
+			</ul>
+		</div>
+	</div>
+<!---以上为head部分-->
+	<div id="left">	
+		<div class="logo2"></div>
+		<ul>
+			<li class="l"><a href="#">益智玩具</a></li>
+			<li class="l"><a href="#">休闲养生</a></li>
+			<li class="l"><a href="#">电子产品</a></li>
+			<li class="l"><a href="#">锻炼身体</a></li>
+			<li class="l"><a href="#">5</a></li>
+		</ul>
+	</div>
+<!--以上为左悬浮部分-->
+	<div id="right">
+		<div class="menu">
+			
+		</div>
+	</div>
+<!--以上为右悬浮部分-->
+<div id="container">
+	<div id="list" style="left: -600px;">
+		<img src="img/5.jpg" alt="1"/>
+		<img src="img/1.jpg" alt="1"/>
+		<img src="img/2.jpg" alt="2"/>
+		<img src="img/3.jpg" alt="3"/>
+		<img src="img/4.jpg" alt="4"/>
+		<img src="img/5.jpg" alt="5"/>
+		<img src="img/1.jpg" alt="5"/>
+	</div>
+	<a href="javascript:;" id="prev" class="arrow">&lt;</a>
+	<a href="javascript:;" id="next" class="arrow">&gt;</a>
+</div>
+<!--以上为轮播部分-->
+</body>
+</html>
